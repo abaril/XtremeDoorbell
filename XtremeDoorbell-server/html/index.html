@@ -1,0 +1,41 @@
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width" />	
+		<title>Xtreme Doorbell</title>
+		<link rel="stylesheet" href="index.css">
+	
+		<script type="text/javascript" src="jquery-1.7.1.js"></script>
+		<script type="text/javascript">
+		
+		function update() {
+			$.getJSON("/clients", function(data) {
+				console.log(data);
+				$("#clients").children().remove();
+				var clients = data.clients;
+				for (i = 0; i < clients.length; ++i) {
+					$("#clients").append("<li class='client'>" + clients[i].address + "</li>");
+				}
+			});
+		}
+		var timer = setInterval("update()", 10000);
+		
+
+		$(window).load(function () {
+			$("#doorbell").click(function () {
+				$.getJSON("/fire", {url: "http://xtremelabs.com"}, function(data) {
+					console.log(data);
+				});
+				return false;
+			});
+		});		
+		</script>
+	</head>
+	<body onload="update()">
+		<div class="button">
+			<a id="doorbell" href="http://xtremelabs.com">Ring, Ring</a>
+		</div>
+			<ul class="clients" id="clients">
+			</ul>
+		</div>
+	</body>
+</html>

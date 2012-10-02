@@ -1,0 +1,50 @@
+body {
+	font: 14pt "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	max-width: 320px;
+	margin: auto;
+}
+
+.first {
+	margin-top: 10px;	
+}
+
+.last {
+	margin-bottom: 10px;
+}
+
+.value_list {
+	margin: 0;
+	margin-bottom: 20px;
+	padding: 0;
+	list-style-type: none;
+}
+.value_list li {
+	margin: auto;
+	margin-bottom: 5px;
+	background-color: #e6edef;
+	border-radius: 5px;
+	width: 95%;
+	height: 37pt;
+}
+.value_title {
+	display: inline;
+	font-size: 18pt;
+	padding-top: 10px;
+	padding-left: 10px;
+	line-height: 37pt;
+}
+.value {
+	display: inline;
+	float: right;
+	width: 30%;
+	padding-left: 10px;
+	text-align: left;
+	background-color: #cce2e9;
+	font-size: 24pt;
+	border-radius: 5px;
+	line-height: 37pt;	
+}
+
+#canvas {
+	margin-left: 10px;
+}

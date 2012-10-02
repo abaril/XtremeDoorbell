@@ -1,0 +1,10 @@
+{
+  "name": "xldoorbell-server",
+  "description": "Xtreme Doorbell Server",
+  "version": "0.1.0",
+  "author": "Allan Baril",
+  "dependencies": {
+    "winston": "~0.6.2"
+  },
+  "devDependencies": {}
+}
