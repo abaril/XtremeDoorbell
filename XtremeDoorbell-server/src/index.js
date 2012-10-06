@@ -36,6 +36,10 @@ winston.add(winston.transports.File, {
 
 winston.info("Settings = " + JSON.stringify(settings));
 
+process.on('uncaughtException', function(err) {
+  winston.log(err);
+});
+
 tcpserver.start(settings);
 
 requestHandlers.init(settings);
