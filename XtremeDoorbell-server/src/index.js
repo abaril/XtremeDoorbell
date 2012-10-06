@@ -24,7 +24,8 @@ var router = require("./router");
 var settings = {
     "client_port": process.env.PORT||9001,
     "http_listen_port": process.env.PORT||9000,
-    "html_directory": "html/"
+    "html_directory": "html/",
+    "audio_directory": "audio/"    
 };
 
 winston.setLevels(winston.config.syslog.levels);
