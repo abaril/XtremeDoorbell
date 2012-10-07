@@ -32,12 +32,15 @@ function start(settings) {
             // handle incoming data.
         });
         socket.on("end", function() {
-            clientSockets.splice(clientSockets.indexOf(socket), 1);
             winston.info("Client @ " + socket.name + " disconnected");
         });
 	socket.on("error", function(error) {
 	    winston.info("Socket error: " + error);
 	});
+        socket.on("close", function(had_error) {
+            winston.info("Socket error: " + error);
+            clientSockets.splice(clientSockets.indexOf(socket), 1);            
+        });
     });
     
     server.listen(settings.client_port, function() {
