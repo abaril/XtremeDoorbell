@@ -26,6 +26,7 @@ function start(settings) {
         socket.name = socket.remoteAddress + ":" + socket.remotePort;
         winston.info("Client @ " + socket.name + " connected");
         
+        socket.setKeepAlive(true, 120000);
         clientSockets.push(socket);
         
         socket.on("data", function(data) {
