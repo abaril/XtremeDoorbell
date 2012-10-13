@@ -63,23 +63,26 @@ function audio(response, request) {
     }
     
     var path = "audio/" + file;
-    fs.exists(path, function(exists) {
-        if (!exists) {
-            response.writeHead(404, {"Content-Type": "text/html"});
-            response.write("Unable to locate audio file " + file);
-            response.end();
-        } else {
+    winston.debug("Playing audio file " + path);
+
+    var first = true;
+    fs.createReadStream(path, {'flags': 'r', 'encoding': 
+                            'binary', 'mode': 0666, 'bufferSize': 64 * 1024})
+      .addListener("data", function(chunk) {
+         if (first) {
             response.writeHead(200, {"Content-Type": "audio/mpeg3"});
-            fs.createReadStream(path, {'flags': 'r', 'encoding': 
-                                  'binary', 'mode': 0666, 'bufferSize': 64 * 1024})
-              .addListener("data", function(chunk){
-                   response.write(chunk, 'binary');
-              })
-              .addListener("close",function() {
-                   response.end();
-              });
-        }
-    });
+            first = false;
+         }
+         response.write(chunk, 'binary');
+      })
+      .addListener("error", function() {
+         response.writeHead(404, {"Content-Type": "text/html"});
+         response.write("Unable to locate audio file " + file);
+         response.end();
+      })
+      .addListener("close",function() {
+         response.end();
+      });
 }
 
 function clients(response, request) {
