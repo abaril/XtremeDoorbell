@@ -20,7 +20,8 @@ var winston = require("winston");
 function route(handle, pathname, response, request) {
 	winston.debug("About to route a request for " + pathname);
         for (route in handle) {
-            if ((typeof handle[route] === 'function') && route.match(pathname)) {
+            winston.debug("Matching " + pathname + " with " + route + " : " + pathname.match(route));
+            if ((typeof handle[route] === 'function') && (pathname.match(route))) {
                 return handle[route](response, request);
             }
         }

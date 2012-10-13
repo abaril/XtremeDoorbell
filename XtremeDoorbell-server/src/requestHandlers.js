@@ -38,33 +38,48 @@ function init(settings) {
 
 // TODO: find a better way to serve static content ...
 function index(response, request) {
-	response.writeHead(200, {"Content-Type": "text/html"});
-	response.write(indexHTML);
-	response.end();
+    response.writeHead(200, {"Content-Type": "text/html"});
+    response.write(indexHTML);
+    response.end();
 }
 
 function jquery(response, request) {
-	response.writeHead(200, {"Content-Type": "text/javascript"});
-	response.write(jquery);
-	response.end();
+    response.writeHead(200, {"Content-Type": "text/javascript"});
+    response.write(jquery);
+    response.end();
 }
 
 function css(response, request) {
-	response.writeHead(200, {"Content-Type": "text/css"});
-	response.write(css);
-	response.end();
+    response.writeHead(200, {"Content-Type": "text/css"});
+    response.write(css);
+    response.end();
 }
 
 function audio(response, request) {
-	response.writeHead(200, {"Content-Type": "audio/mpeg3"});
-        fs.createReadStream("audio/test.mp3", {'flags': 'r', 'encoding': 
-                              'binary', 'mode': 0666, 'bufferSize': 64 * 1024})
-  .addListener("data", function(chunk){
-    response.write(chunk, 'binary');
-   })
-   .addListener("close",function() {
-     response.end();
-   });
+    var components = request.url.split("/");
+    var file = "test.mp3";
+    if (components.length > 2) {
+        file = components[components.length - 1];
+    }
+    
+    var path = "audio/" + file;
+    fs.exists(path, function(exists) {
+        if (!exists) {
+            response.writeHead(404, {"Content-Type": "text/html"});
+            response.write("Unable to locate audio file " + file);
+            response.end();
+        } else {
+            response.writeHead(200, {"Content-Type": "audio/mpeg3"});
+            fs.createReadStream(path, {'flags': 'r', 'encoding': 
+                                  'binary', 'mode': 0666, 'bufferSize': 64 * 1024})
+              .addListener("data", function(chunk){
+                   response.write(chunk, 'binary');
+              })
+              .addListener("close",function() {
+                   response.end();
+              });
+        }
+    });
 }
 
 function clients(response, request) {
