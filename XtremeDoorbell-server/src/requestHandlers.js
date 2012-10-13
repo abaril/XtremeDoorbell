@@ -55,6 +55,18 @@ function css(response, request) {
 	response.end();
 }
 
+function audio(response, request) {
+	response.writeHead(200, {"Content-Type": "audio/mpeg3"});
+        fs.createReadStream("audio/test.mp3", {'flags': 'r', 'encoding': 
+                              'binary', 'mode': 0666, 'bufferSize': 64 * 1024})
+  .addListener("data", function(chunk){
+    response.write(chunk, 'binary');
+   })
+   .addListener("close",function() {
+     response.end();
+   });
+}
+
 function clients(response, request) {
     winston.debug("Request for client list");
 
@@ -86,5 +98,6 @@ exports.init = init;
 exports.index = index;
 exports.jquery = jquery;
 exports.css = css;
+exports.audio = audio;
 exports.clients = clients;
 exports.fire = fire;
