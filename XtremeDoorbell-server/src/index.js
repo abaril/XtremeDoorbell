@@ -50,5 +50,6 @@ handle["/jquery-1.7.1.js"] = requestHandlers.jquery;
 handle["/index.css"] = requestHandlers.css;
 handle["/clients"] = requestHandlers.clients;
 handle["/fire"] = requestHandlers.fire;
+handle["/audio"] = requestHandlers.audio;
 
 server.start(settings, router.route, handle);

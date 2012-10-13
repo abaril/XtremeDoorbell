@@ -22,7 +22,7 @@
 
 		$(window).load(function () {
 			$("#doorbell").click(function () {
-				$.getJSON("/fire", {url: "http://xtremelabs.com"}, function(data) {
+				$.getJSON("/fire", {url: "http://temperature.xtremelabs.com:9000/audio"}, function(data) {
 					console.log(data);
 				});
 				return false;
