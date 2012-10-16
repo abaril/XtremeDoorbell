@@ -39,7 +39,7 @@ function start(settings) {
 	    winston.info("Socket error: " + error);
 	});
         socket.on("close", function(had_error) {
-            winston.info("Socket error: " + error);
+            winston.info("Socket closed. Had error = " + had_error);
             clientSockets.splice(clientSockets.indexOf(socket), 1);            
         });
     });
