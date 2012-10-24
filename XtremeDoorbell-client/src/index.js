@@ -19,9 +19,10 @@ var winston = require("winston");
 var tcpclient = require("./tcpclient");
 
 var settings = {
-    server_address: "localhost",
+    server_address: "temperature.xtremelabs.com",
     server_port: 9001,
-    audio_player: "mpg123"
+    audio_player: "mpg123",
+    name: "node"
 };
 
 winston.setLevels(winston.config.syslog.levels);

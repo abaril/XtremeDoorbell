@@ -19,6 +19,7 @@ var winston = require("winston");
 var net = require("net");
 
 var clientSockets = [];
+var statusTimer;
 
 function start(settings) {
 
@@ -30,14 +31,18 @@ function start(settings) {
         clientSockets.push(socket);
         
         socket.on("data", function(data) {
-            // handle incoming data.
+            winston.info("Received status: " + data);
+
+            var status = JSON.parse(data);
+            socket.name = status.name;
+            socket.status = status;
         });
         socket.on("end", function() {
             winston.info("Client @ " + socket.name + " disconnected");
         });
-	socket.on("error", function(error) {
-	    winston.info("Socket error: " + error);
-	});
+    	socket.on("error", function(error) {
+    	    winston.info("Socket error: " + error);
+    	});
         socket.on("close", function(had_error) {
             winston.info("Socket closed. Had error = " + had_error);
             clientSockets.splice(clientSockets.indexOf(socket), 1);            
@@ -47,6 +52,8 @@ function start(settings) {
     server.listen(settings.client_port, function() {
         winston.info("Client connections accepted at: " + settings.client_port);
     });
+
+    statusTimer = setInterval(queryStatus, 30000);
 }
 
 function clients() {
@@ -54,6 +61,9 @@ function clients() {
     for (i = 0; i < clientSockets.length; ++i) {
         var clientObj = {};
         clientObj.address = clientSockets[i].name;
+        if (clientSockets[i].status != undefined) {
+            clientObj.status = clientSockets[i].status;
+        }
         clientList.push(clientObj);
     }
     return clientList;
@@ -67,6 +77,15 @@ function play(audioURL) {
     for (i = 0; i < clientSockets.length; ++i) {
         clientSockets[i].write(JSON.stringify(payload));
     }
+}
+
+function queryStatus() {
+    var payload = {};
+    payload.command = "status";
+
+    for (i = 0; i < clientSockets.length; ++i) {
+        clientSockets[i].write(JSON.stringify(payload));
+    }    
 }
 
 exports.start = start;

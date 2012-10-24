@@ -22,9 +22,12 @@ var exec = require('child_process').exec;
 var client;
 var clientState = 0;
 var watchdogTimer;
+var status = {};
 
 function start(settings) {
     watchdog(settings);
+    status.name = settings.name;
+    status.status = "not connected";
 }
 
 function watchdog(settings) {
@@ -42,6 +45,8 @@ function establishConnection(settings) {
     client.connect(settings.server_port, settings.server_address, function() {
         clientState = 2;
         winston.info("Connected to server");
+        status.status = "idle";
+        status.address = client.address();
     });
     clientState = 1;
     
@@ -51,14 +56,21 @@ function establishConnection(settings) {
         if (request.command === "play") {
             play(settings.audio_player, request.url);        
         }
+        else if (request.command === "status") {
+            client.write(JSON.stringify(status));
+        }
     });
     client.on('error', function() {
         winston.info("Error");
         clientState = 0;
+        status.status = "not connected";
+        status.address = {};
     });
     client.on('close', function() {
         winston.info("Connection closed");
         clientState = 0;
+        status.status = "not connected";
+        status.address = {};
     });
     
     return client;
@@ -67,10 +79,19 @@ function establishConnection(settings) {
 function play(audio_player, url)
 {
     winston.info("Play " + url + " with " + audio_player);
+
+    status.status = "playing"
+    client.write(JSON.stringify(status));
+
     exec(audio_player + " " + url, function(error) {
         if (error != null) {
             winston.warn('Unable to execute command' + error);
+            status.status = "error: " + error;
+        } else {
+            status.status = "idle";            
         }
+        // update the server
+        client.write(JSON.stringify(status));
     });
 }
 
