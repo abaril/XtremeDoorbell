@@ -60,9 +60,12 @@ function clients() {
     var clientList = [];
     for (i = 0; i < clientSockets.length; ++i) {
         var clientObj = {};
-        clientObj.address = clientSockets[i].name;
+        clientObj.address = clientSockets[i].remoteAddress + ":" + clientSockets[i].remotePort;
         if (clientSockets[i].status != undefined) {
+            clientObj.name = clientSockets[i].status.name;
             clientObj.status = clientSockets[i].status;
+        } else {
+            clientObj.name = clientObj.address;
         }
         clientList.push(clientObj);
     }

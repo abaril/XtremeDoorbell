@@ -47,6 +47,8 @@ function establishConnection(settings) {
         winston.info("Connected to server");
         status.status = "idle";
         status.address = client.address();
+
+        client.write(JSON.stringify(status));
     });
     clientState = 1;
     

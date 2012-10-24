@@ -13,7 +13,11 @@
 				$("#clients").children().remove();
 				var clients = data.clients;
 				for (i = 0; i < clients.length; ++i) {
-					$("#clients").append("<li class='client'>" + clients[i].address + "</li>");
+					var status = "unknown";
+					if (clients[i].status != undefined) {
+						status = clients[i].status.status;
+					}
+					$("#clients").append("<li class='client'>" + clients[i].name + " - " + status + "</li>");
 				}
 			});
 		}
