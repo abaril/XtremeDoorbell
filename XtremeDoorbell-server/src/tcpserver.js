@@ -31,7 +31,7 @@ function start(settings) {
         clientSockets.push(socket);
         
         socket.on("data", function(data) {
-            winston.info("Received status: " + data);
+            winston.debug("Received status: " + data);
 
             var status = JSON.parse(data);
             socket.name = status.name;
