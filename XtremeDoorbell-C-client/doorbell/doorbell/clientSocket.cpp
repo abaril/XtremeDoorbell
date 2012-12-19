@@ -13,6 +13,7 @@
 #include <sys/select.h>
 #include <netinet/in.h>
 #include <netdb.h>
+#include <strings.h>
 
 int connectToServer(const char *domainName, int port)
 {

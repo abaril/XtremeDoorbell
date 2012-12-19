@@ -12,6 +12,6 @@
 #define NODE_NAME ("superawesome")
 #define SERVER_ADDRESS ("temperature.xtremelabs.com")
 #define SERVER_PORT (9001)
-#define MUSIC_COMMAND ("say")
+#define MUSIC_COMMAND ("/usr/bin/mpg123")
 
 #endif
