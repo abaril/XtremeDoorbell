@@ -1,0 +1,229 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9D0EFA971681450800F47FC5 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D0EFA961681450800F47FC5 /* main.cpp */; };
+		9D0EFA991681450800F47FC5 /* doorbell.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9D0EFA981681450800F47FC5 /* doorbell.1 */; };
+		9D0EFAA1168147F500F47FC5 /* clientSocket.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D0EFAA0168147F500F47FC5 /* clientSocket.cpp */; };
+		9D0EFAA416814F0800F47FC5 /* commandHandler.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9D0EFAA216814F0800F47FC5 /* commandHandler.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9D0EFA901681450800F47FC5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				9D0EFA991681450800F47FC5 /* doorbell.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		9D0EFA921681450800F47FC5 /* doorbell */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = doorbell; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D0EFA961681450800F47FC5 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		9D0EFA981681450800F47FC5 /* doorbell.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = doorbell.1; sourceTree = "<group>"; };
+		9D0EFA9F168147E900F47FC5 /* clientSocket.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = clientSocket.h; sourceTree = "<group>"; };
+		9D0EFAA0168147F500F47FC5 /* clientSocket.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = clientSocket.cpp; sourceTree = "<group>"; };
+		9D0EFAA216814F0800F47FC5 /* commandHandler.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = commandHandler.cpp; sourceTree = "<group>"; };
+		9D0EFAA316814F0800F47FC5 /* commandHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = commandHandler.h; sourceTree = "<group>"; };
+		9D0EFAA51681544900F47FC5 /* settings.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = settings.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9D0EFA8F1681450800F47FC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9D0EFA871681450800F47FC5 = {
+			isa = PBXGroup;
+			children = (
+				9D0EFA951681450800F47FC5 /* doorbell */,
+				9D0EFA931681450800F47FC5 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9D0EFA931681450800F47FC5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9D0EFA921681450800F47FC5 /* doorbell */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9D0EFA951681450800F47FC5 /* doorbell */ = {
+			isa = PBXGroup;
+			children = (
+				9D0EFA961681450800F47FC5 /* main.cpp */,
+				9D0EFA981681450800F47FC5 /* doorbell.1 */,
+				9D0EFA9F168147E900F47FC5 /* clientSocket.h */,
+				9D0EFAA0168147F500F47FC5 /* clientSocket.cpp */,
+				9D0EFAA216814F0800F47FC5 /* commandHandler.cpp */,
+				9D0EFAA316814F0800F47FC5 /* commandHandler.h */,
+				9D0EFAA51681544900F47FC5 /* settings.h */,
+			);
+			path = doorbell;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9D0EFA911681450800F47FC5 /* doorbell */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9D0EFA9C1681450800F47FC5 /* Build configuration list for PBXNativeTarget "doorbell" */;
+			buildPhases = (
+				9D0EFA8E1681450800F47FC5 /* Sources */,
+				9D0EFA8F1681450800F47FC5 /* Frameworks */,
+				9D0EFA901681450800F47FC5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = doorbell;
+			productName = doorbell;
+			productReference = 9D0EFA921681450800F47FC5 /* doorbell */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9D0EFA891681450800F47FC5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Allan Baril";
+			};
+			buildConfigurationList = 9D0EFA8C1681450800F47FC5 /* Build configuration list for PBXProject "doorbell" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 9D0EFA871681450800F47FC5;
+			productRefGroup = 9D0EFA931681450800F47FC5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9D0EFA911681450800F47FC5 /* doorbell */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9D0EFA8E1681450800F47FC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9D0EFA971681450800F47FC5 /* main.cpp in Sources */,
+				9D0EFAA1168147F500F47FC5 /* clientSocket.cpp in Sources */,
+				9D0EFAA416814F0800F47FC5 /* commandHandler.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		9D0EFA9A1681450800F47FC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		9D0EFA9B1681450800F47FC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		9D0EFA9D1681450800F47FC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9D0EFA9E1681450800F47FC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9D0EFA8C1681450800F47FC5 /* Build configuration list for PBXProject "doorbell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D0EFA9A1681450800F47FC5 /* Debug */,
+				9D0EFA9B1681450800F47FC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9D0EFA9C1681450800F47FC5 /* Build configuration list for PBXNativeTarget "doorbell" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D0EFA9D1681450800F47FC5 /* Debug */,
+				9D0EFA9E1681450800F47FC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9D0EFA891681450800F47FC5 /* Project object */;
+}
