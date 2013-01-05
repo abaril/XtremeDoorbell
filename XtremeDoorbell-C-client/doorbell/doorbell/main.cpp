@@ -29,10 +29,14 @@ int main(int argc, const char * argv[])
         if (socketConnected(socketHandle)) {
             if (dataAvailable(socketHandle, 30)) {
                 commandLength = receiveData(socketHandle, commandBuffer, sizeof(commandBuffer));
+                if (commandLength == 0) {
+                    // a receive of zero is also an indication of a closed socket (got to love C/C++ sometimes)
+                    socketHandle = -1;
+                }
                 std::cout << "Received: " <<  commandBuffer << std::endl;
                 handleCommand(socketHandle, commandBuffer, commandLength);
             }
-            else if (!socketConnected(socketHandle)) {
+            else {
                 socketHandle = -1;
             }
         }
