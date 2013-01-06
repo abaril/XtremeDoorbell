@@ -15,6 +15,7 @@
 #include <arpa/inet.h>
 #include <netdb.h>
 #include <strings.h>
+#include <string.h>
 
 int connectToServer(const char *domainName, int port)
 {
