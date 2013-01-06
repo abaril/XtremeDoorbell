@@ -12,6 +12,7 @@
 #include <sys/socket.h>
 #include <sys/select.h>
 #include <netinet/in.h>
+#include <arpa/inet.h>
 #include <netdb.h>
 #include <strings.h>
 
@@ -92,3 +93,16 @@ bool sendData(const int socketHandle, const char *buffer, int bufferLength)
 {
     return (send(socketHandle, buffer, bufferLength, 0) == bufferLength);
 }
+
+bool determineLocalAddress(const int socketHandle, char *localAddress, int localAddressLength)
+{
+    struct sockaddr_in sockaddr;
+    socklen_t sockaddrLength = sizeof(sockaddr);
+    
+    if (getsockname(socketHandle, (struct sockaddr *)&sockaddr, &sockaddrLength) == -1) {
+        return false;
+    }
+    strncpy(localAddress, inet_ntoa(sockaddr.sin_addr), localAddressLength);
+    return true;
+}
+

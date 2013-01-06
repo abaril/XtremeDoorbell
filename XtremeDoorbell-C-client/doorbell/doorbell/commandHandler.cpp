@@ -16,12 +16,18 @@
 
 void sendStatus(int socketHandle)
 {
+    char localAddress[128];
+    if (!determineLocalAddress(socketHandle, localAddress, sizeof(localAddress))) {
+        localAddress[0] = 0;
+    }
+    
     char response[512];
     int length;
     
     length = snprintf(response, sizeof(response),
-                      "{\"name\":\"%s\",\"status\":\"idle\"}",
-                      NODE_NAME);
+                      "{\"name\":\"%s\",\"status\":\"idle\",\"localAddress\":\"%s\"}",
+                      NODE_NAME,
+                      localAddress);
     sendData(socketHandle, response, length);
 }
 
