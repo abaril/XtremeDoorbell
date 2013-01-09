@@ -49,7 +49,7 @@ int connectToServer(const char *domainName, int port)
     return socketHandle;
 }
 
-bool dataAvailable(const int socketHandle, const int timeoutSec)
+int dataAvailable(const int socketHandle, const int timeoutSec)
 {
     fd_set fds;
     struct timeval timeout;
@@ -63,7 +63,7 @@ bool dataAvailable(const int socketHandle, const int timeoutSec)
     rc = select(sizeof(fds)*8, &fds, NULL, NULL, &timeout);
     if (rc < 0) {
         std::cerr << "Select failed" << std::endl;
-        return false;
+        return -1;
     }
     
     return FD_ISSET(socketHandle, &fds);
