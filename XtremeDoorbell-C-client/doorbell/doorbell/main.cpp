@@ -27,16 +27,17 @@ int main(int argc, const char * argv[])
         }
         
         if (socketConnected(socketHandle)) {
-            if (dataAvailable(socketHandle, 30)) {
+            int available = dataAvailable(socketHandle, 30);
+            if (available > 0) {
                 commandLength = receiveData(socketHandle, commandBuffer, sizeof(commandBuffer));
-                if (commandLength == 0) {
-                    // a receive of zero is also an indication of a closed socket (got to love C/C++ sometimes)
-                    socketHandle = -1;
+                if (commandLength > 0) {
+                    std::cout << "Received: " <<  commandBuffer << std::endl;
+                    handleCommand(socketHandle, commandBuffer, commandLength);
                 }
-                std::cout << "Received: " <<  commandBuffer << std::endl;
-                handleCommand(socketHandle, commandBuffer, commandLength);
             }
-            else {
+            else if (available < 0) {
+                // socket must have broke, let's close and re-attempt
+                close(socketHandle);
                 socketHandle = -1;
             }
         }

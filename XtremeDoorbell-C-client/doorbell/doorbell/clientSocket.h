@@ -10,7 +10,7 @@
 #define doorbell_clientSocket_h
 
 int connectToServer(const char *domainName, int port);
-bool dataAvailable(const int socketHandle, const int timeoutSec);
+int dataAvailable(const int socketHandle, const int timeoutSec);
 bool socketConnected(const int socketHandle);
 ssize_t receiveData(const int socketHandle, char *buffer, int bufferLength);
 bool sendData(const int socketHandle, const char *buffer, int bufferLength);
