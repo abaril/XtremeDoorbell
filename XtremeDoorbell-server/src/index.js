@@ -17,6 +17,7 @@
 
 var winston = require("winston");
 var tcpserver = require("./tcpserver");
+var timer = require("./timer");
 var requestHandlers = require("./requestHandlers");
 var server = require("./server");
 var router = require("./router");
@@ -25,7 +26,10 @@ var settings = {
     "client_port": process.env.PORT||9001,
     "http_listen_port": process.env.PORT||9000,
     "html_directory": "html/",
-    "audio_directory": "audio/"    
+    "audio_directory": "audio/",
+    "alarm_time_hour_utc": 14,
+    "alarm_time_minute_utc": 04,
+    "alarm_audio_url": "http://temperature.xtremelabs.com:9000/audio"
 };
 
 winston.setLevels(winston.config.syslog.levels);
@@ -42,6 +46,7 @@ process.on('uncaughtException', function(err) {
 });
 
 tcpserver.start(settings);
+timer.start(settings);
 
 requestHandlers.init(settings);
 var handle = {}
@@ -51,5 +56,6 @@ handle["^/index.css$"] = requestHandlers.css;
 handle["^/clients$"] = requestHandlers.clients;
 handle["^/fire$"] = requestHandlers.fire;
 handle["^/audio(/.*)?$"] = requestHandlers.audio;
+handle["^/secondsLeft$"] = requestHandlers.secondsLeft;
 
 server.start(settings, router.route, handle);

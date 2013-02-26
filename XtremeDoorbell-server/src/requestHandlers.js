@@ -19,6 +19,7 @@ var winston = require("winston");
 var fs = require("fs");
 var url = require("url");
 var tcpserver = require("./tcpserver");
+var timer = require("./timer");
 
 var indexHTML;
 var jquery;
@@ -112,6 +113,14 @@ function fire(response, request) {
     response.end();
 }
 
+function secondsLeft(response, request) {
+    winston.debug("Request for client list");
+
+    response.writeHead(200, {"Content-Type": "text/javascript"});
+    response.write(JSON.stringify({secondsLeft: timer.secondsLeft()}));
+    response.end();
+}
+
 exports.init = init;
 exports.index = index;
 exports.jquery = jquery;
@@ -119,3 +128,4 @@ exports.css = css;
 exports.audio = audio;
 exports.clients = clients;
 exports.fire = fire;
+exports.secondsLeft = secondsLeft;

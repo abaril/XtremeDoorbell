@@ -20,6 +20,11 @@
 					$("#clients").append("<li class='client'>" + clients[i].name + " - " + status + "</li>");
 				}
 			});
+
+			$.getJSON("/secondsLeft", function(data) {
+				console.log(data);
+				$("#secondsLeft").html(data.secondsLeft);
+			});
 		}
 		var timer = setInterval("update()", 10000);
 		
@@ -35,6 +40,7 @@
 		</script>
 	</head>
 	<body onload="update()">
+		<div align="center">Seconds until next ring: <span id="secondsLeft" /></div>
 		<div align="center">
 			<a id="doorbell" class="button" href="http://xtremelabs.com">Ring, Ring</a>
 		</div>
